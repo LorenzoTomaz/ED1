@@ -10,6 +10,7 @@ void main(void){
     char nome[100];
     char curso[50];
     int matricula;
+    int *mat;
     int ativo;
     float coefRend;
     int status;

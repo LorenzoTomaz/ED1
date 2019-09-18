@@ -15,17 +15,14 @@ Cofo *cCreate(int n){
     Cofo *c;
     c = (Cofo *)malloc(sizeof(Cofo));
     if (c != NULL){
-        printf("teste");
         c->elms = (void **)malloc(sizeof(void*)*n);
         if (c->elms != NULL){
             c->maxElms = n;
             c->nElms = 0;
             return c;
         }
-        printf("free");
         free(c);
     }
-    printf("NULL");
     return NULL;
 }
 int cDestroy(Cofo *c){
@@ -49,20 +46,22 @@ int cInsert(Cofo *c, void *elms){
     return false;
 }
 void *cQuery(Cofo *c, void *key, int (*cmp)(void *, void*)){
-    int i = 0;
+    int i = 0; int aux;int k;
     printf("query");
     if (c != NULL){
         if (c->nElms > 0){
-            while (cmp(c->elms[i], key) != true && i < c->nElms){
+            aux = c->nElms;
+            while ((i < aux) && (cmp(c->elms[i], key) != true)){
                 i++;
-                printf("i++");
+                k = i;
+            }
+            if ( i >= aux){
+                return NULL;
             }
             if (cmp(c->elms[i], key) == true){
                 return c->elms[i];
             }
-            else{
-                printf("else");
-            }
+            
         }
     }
     return NULL;
@@ -119,9 +118,19 @@ void *cRemove(Cofo *c, void *key, int (*cmp)(void *, void *)){
  int comparaMatricula(void *a, void *b){
      Aluno *pa;
      int *pb;
+     int testeb;
+     int testea;
      pb = (int *)b;
      pa = (Aluno *)a;
-     printf("cmp");
+     printf("%d", *pb);
+     testea = pa->matricula;
+     testeb= *pb;
+     if (testea == testeb){
+         return true;
+     }else {
+         return false;
+     }
+     
      if (pa->matricula == *pb){
          return true;
      }
