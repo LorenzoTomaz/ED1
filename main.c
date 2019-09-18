@@ -75,3 +75,55 @@ void main(void){
     }
     
 }
+
+ int comparaMatricula(void *a, void *b){
+     Aluno *pa;
+     int *pb;
+     int testeb;
+     int testea;
+     pb = (int *)b;
+     pa = (Aluno *)a;
+     printf("%d", *pb);
+     testea = pa->matricula;
+     testeb= *pb;
+     if (testea == testeb){
+         return true;
+     }else {
+         return false;
+     }
+     
+     if (pa->matricula == *pb){
+         return true;
+     }
+     else{
+         return false;
+     }
+ }
+
+
+ int comparaNome(void *a, void *b){
+     Aluno *pa;
+     char *pb;
+     pb = (char *)b;
+     pa = (Aluno *)a;
+     if (strcmp(pa->curso,pb) == 0){
+         return true;
+     }
+     else{
+         return false;
+     }
+ }
+
+
+ int comparaAtivo(void *a, void *b){
+     Aluno *pa;
+     int *pb;
+     pb = (int *)b;
+     pa = (Aluno *)a;
+     if (pa->ativo == *pb){
+         return true;
+     }
+     else{
+         return false;
+     }
+ }
