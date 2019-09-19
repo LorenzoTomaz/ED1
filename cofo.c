@@ -40,7 +40,6 @@ int cInsert(Cofo *c, void *elms){
 }
 void *cQuery(Cofo *c, void *key, int (*cmp)(void *, void*)){
     int i = 0; int aux;int k;
-    printf("query");
     if (c != NULL){
         if (c->nElms > 0){
             aux = c->nElms;
@@ -60,13 +59,20 @@ void *cQuery(Cofo *c, void *key, int (*cmp)(void *, void*)){
     return NULL;
 }
 
+
+
 void *cRemove(Cofo *c, void *key, int (*cmp)(void *, void *)){
     int i = 0;
     void *aux;
+    int iAux;
     if (c != NULL){
         if (c->nElms > 0){
-            while (cmp(c->elms[i], key) != true && i < c->nElms){
+            iAux = c->nElms;
+            while ((i < iAux) && (cmp(c->elms[i], key) != true)){
                 i++;
+            }
+            if ( i >= iAux){
+                return NULL;
             }
             if (cmp(c->elms[i], key) == true){
                 aux = c->elms[i];
@@ -89,8 +95,10 @@ void *cRemove(Cofo *c, void *key, int (*cmp)(void *, void *)){
  }
 
  void *cGetNext(Cofo *c){
+     int aux;
+     int current;
      if (c != NULL){
-         if (c->curElms < c->nElms -1){
+         if (c->curElms < c->nElms){
              c->curElms++;
              return c->elms[c->curElms];
          }
