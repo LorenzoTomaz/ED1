@@ -38,7 +38,6 @@ void main(void){
             scanf("%d", &ativo);
             printf("Digite o coeficiente de rendimento do Aluno: \n");
             scanf("%f", &coefRend);
-            printf("%f", coefRend);
             a = (Aluno *)malloc(sizeof(Aluno));
             if (a != NULL){
                 strcpy(a->nome, nome);
